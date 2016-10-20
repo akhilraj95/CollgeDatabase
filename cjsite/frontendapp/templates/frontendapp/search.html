@@ -1,3 +1,31 @@
 {% if error_message %}
 	<p>{{ error_message }}</p>
 {% endif %}
+
+<form action="{% url 'search'%}" method="POST">
+	{% csrf_token %}
+	<input type="text" name="collegename">
+	<input type="submit" value="search">
+</form>
+
+
+{% if college_list %}
+	<table>
+		<thead>
+			<th>College</th>
+			<th>University</th>
+		</thead>
+		<tbody>
+    		{% for college in college_list %}    		
+	    		<tr>
+        		<td>{{ college.name }}</a></td>
+        		<td>{{ college.university }}</td>	
+	    		 </tr>
+    		{% endfor %}
+    	</tbody>
+	</table>
+
+{% else %}
+    <p>No colleges found.</p>
+{% endif %}
+	
