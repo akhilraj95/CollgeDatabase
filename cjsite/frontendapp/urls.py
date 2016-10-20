@@ -4,7 +4,8 @@ from . import views
 
 urlpatterns = [
 	#/home/
-    url(r'^$', views.index, name='index'),
+    url(r'^$', views.home, name='home'),
+    url(r'^search$',views.search, name='search'),
     #/home/result
-    url(r'^colleges/$',views.results,name='results'),
+    url(r'^colleges$',views.results,name='results'),
 ]
