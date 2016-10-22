@@ -1,0 +1,10 @@
+<h3>University</h3>
+<hr>
+{% if university %}
+  <p> name : {{ university.name }}</p>
+  <p> website : {{ university.website }}</p>
+  <p> country : {{ university.country }}</p>
+  <p> date founded : {{ university.date_founded }}</p>
+{% else %}
+  You seem to be lost
+{% endif %}

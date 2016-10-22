@@ -1,4 +1,4 @@
-#!/home/akhil/CJ/Venvs/djangoenv/bin/python
+#!/home/akhil/work/CollgeDatabase/Venvs/djangoenv/bin/python
 
 import sys
 import getopt

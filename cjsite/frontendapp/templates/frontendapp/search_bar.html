@@ -1,0 +1,9 @@
+<form action="{% url 'search'%}" method="POST">
+	{% csrf_token %}
+	<input type="text" name="collegename">
+	<input type="submit" value="search"><br>
+	search by<br>
+	college<input type="radio" name = "search_type" value="college" checked><br>
+	university<input type="radio" name = "search_type" value="university">
+</form>
+<hr>
