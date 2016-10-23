@@ -1,3 +1,25 @@
+
+	    <form class="col s12"  action="{% url 'search'%}" method="post">
+				{% csrf_token %}
+
+	        <div class="input-field col s12 m8 l8">
+						<i class="material-icons prefix">search</i>
+	          <input  id="collegename" type="text" class="validate" name="collegename">
+	          <label for="collegename">Search</label>
+	        </div>
+
+					<div class="input-field col s6 m2 l2">
+
+				      <input name="search_type" type="radio" id="test1" value="college" checked />
+				      <label for="test1">College</label>
+					</div>
+					<div class="input-field col s6 m2 l2">
+				      <input name="search_type" type="radio" id="test2" value="university" />
+				      <label for="test2">University</label>
+					</div>
+
+	  	</form>
+<!--
 <form action="{% url 'search'%}" method="POST">
 	{% csrf_token %}
 	<input type="text" name="collegename">
@@ -5,5 +27,4 @@
 	search by<br>
 	college<input type="radio" name = "search_type" value="college" checked><br>
 	university<input type="radio" name = "search_type" value="university">
-</form>
-<hr>
+</form> -->

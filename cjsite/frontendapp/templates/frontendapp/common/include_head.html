@@ -1,0 +1,47 @@
+<!--
+
+  include_head.html - should be included on every page using materialize css
+
+  Note :
+    Include the 'include_jsscript.html' in the end of each page
+
+-->
+{% load staticfiles %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no"/>
+  <title>Campus Jankari</title>
+
+  <!-- CSS  -->
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link href="{% static 'css/materialize.css' %}" type="text/css" rel="stylesheet" media="screen,projection"/>
+  <link href="{% static 'css/style.css' %}" type="text/css" rel="stylesheet" media="screen,projection"/>
+
+<!-- Padding so that navbar doesn't block content -->
+  <style>
+  .pagecontent {
+    padding-top: 40px;
+  }
+  @media (max-width: 979px) {
+  .pagecontent{
+      padding-top: 0px;
+    }
+  }
+  </style>
+
+<!-- sticky footer -->
+<style>
+body {
+   display: flex;
+   min-height: 100vh;
+   flex-direction: column;
+ }
+
+ main {
+   flex: 1 0 auto;
+ }
+</style>
+</head>
+<body>

@@ -1,0 +1,28 @@
+{% load staticfiles %}
+  <nav class="white" role="navigation">
+    <div class="nav-wrapper container">
+      <a id="logo-container" href="#" class="brand-logo">Campus Jankari</a>
+      <ul class="right hide-on-med-and-down">
+        <li><a href="#">College</a></li>
+        <li><a href="#">University</a></li>
+        <li><a href="#"><i class="material-icons">perm_identity</i></a></li>
+      </ul>
+
+      <ul id="nav-mobile" class="side-nav">
+        <li>
+          <div class="userView">
+            <img class="background" src="{% static 'mobile_profile_background.jpg' %}">
+            <a href="#!user"><img class="circle" src="{% static 'profile_default.jpg' %}"></a>
+            <a href="#!name"><span class="white-text name">John Doe</span></a>
+            <a href="#!email"><span class="white-text email">jdandturk@gmail.com</span></a>
+          </div>
+        </li>
+        <li><a class="subheader">Search By</a></li>
+        <li><a class="waves-effect" href="#">College</a></li>
+        <li><a class="waves-effect" href="#">University</a></li>
+        <li><div class="divider"></div></li>
+
+      </ul>
+      <a href="#" data-activates="nav-mobile" class="button-collapse"><i class="material-icons">menu</i></a>
+    </div>
+  </nav>

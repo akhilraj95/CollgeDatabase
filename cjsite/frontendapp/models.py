@@ -17,7 +17,7 @@ class User(models.Model):
 		return self.email
 
 class University(models.Model):
-	name = models.CharField(max_length=50, unique = True)
+	name = models.CharField(max_length=150, unique = True)
 	date_founded = models.DateField('date founded')
 	country = models.CharField(max_length=50)
 	website = models.URLField(default=None)
@@ -26,8 +26,8 @@ class University(models.Model):
 
 class College(models.Model):
 	university = models.ForeignKey('University', on_delete=models.CASCADE , default = None , blank = True)
-	name = models.CharField(max_length=50, unique=True)
-	address = models.CharField(max_length=200)
+	name = models.CharField(max_length=150, unique=True)
+	address = models.CharField(max_length=300)
 	website = models.URLField()
 	date_founded = models.DateField('date founded')
 	def __str__(self):

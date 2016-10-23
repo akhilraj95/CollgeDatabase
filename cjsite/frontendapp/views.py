@@ -7,9 +7,7 @@ from .models import Accesslog,University,College,User
 
 #TEMP
 def index(request):
-	latest_access_list = Accesslog.objects.order_by('-acs_date')[:5]
 	context = {
-		'latest_access_list': latest_access_list,
 	}
 	return render(request, 'frontendapp/index.html', context)
 

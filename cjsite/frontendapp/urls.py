@@ -9,7 +9,10 @@ urlpatterns = [
 
     #/home/result/
     #url(r'^college/(?P<question_id>+)$',views.college,name='college'),
-   	
+
+    #home/test
+    url(r'^test$',views.index, name='test'),
+
    	#/home/university/name or id
     url(r'^university/(?P<university>[\w\s]+)$',views.university,name='university'),
 
