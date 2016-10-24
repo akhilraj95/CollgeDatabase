@@ -1,35 +1,69 @@
-{% include "frontendapp/search_bar.html" %}
+{% load staticfiles %}
+{% include 'frontendapp/common/include_head.html' %}
 
-{% if college_list %}
-	<table>
-		<thead>
-			<th>College</th>
-			<th>University</th>
-		</thead>
-		<tbody>
-    		{% for college in college_list %}
-	    		<tr>
-        		<td><a href="{% url 'college' college.id %}">{{ college.name }}</a></td>
-        		<td>{{ college.university }}</td>
-	    		 </tr>
-    		{% endfor %}
-    	</tbody>
-	</table>
-{% else %}
-	{% if university_list %}
-			<table>
-				<thead>
-					<th>University</th>
-				</thead>
-				<tbody>
-						{% for university in university_list %}
-							<tr>
-								<td><a href="{% url 'university' university.id %}">{{ university.name }}</a></td>
-							</tr>
-						{% endfor %}
-					</tbody>
-			</table>
-		{% else %}
-    	<p>No results found.</p>
-		{% endif %}
-{% endif %}
+<main>
+
+{% include 'frontendapp/common/include_nav.html' %}
+
+<div class="container">
+	<div class="row">
+		{% include "frontendapp/search_bar.html" %}
+	</div>
+
+	<div class="row">
+			{% if college_list %}
+							{% for college in college_list %}
+								<div class="col s12 m6 l6">
+									<div class="card small">
+									 <div class="card-image waves-effect waves-block waves-light">
+										 <img class="activator" src="{% static 'mobile_profile_background.jpg' %}">
+									 </div>
+									 <div class="card-content">
+										 <span class="card-title activator grey-text text-darken-4">{{ college.name }}<i class="material-icons right">more_vert</i></span>
+										 <p><a href="#">{{ college.university }}</a></p>
+									 </div>
+									 <div class="card-reveal">
+										 <span class="card-title grey-text text-darken-4">{{ college.name }}<i class="material-icons right">close</i></span>
+										 <p>Here is some more information about this product that is only revealed once clicked on.</p>
+										 <a class="waves-effect waves-light btn" href="{% url 'college' college.id %}" target="_blank" ><i class="material-icons left">open_in_new</i>Explore</a>
+									 </div>
+									</div>
+								</div>
+							{% endfor %}
+
+			{% else %}
+				{% if university_list %}
+									{% for university in university_list %}
+										<div class="col s12 m6 l6">
+											<div class="card small">
+											 <div class="card-image waves-effect waves-block waves-light">
+												 <img class="activator" src="{% static 'mobile_profile_background.jpg' %}">
+											 </div>
+											 <div class="card-content">
+												 <span class="card-title activator grey-text text-darken-4">{{ university.name }}<i class="material-icons right">more_vert</i></span>
+												 <p><a href="#">{{ university.date_founded }}</a></p>
+											 </div>
+											 <div class="card-reveal">
+												 <span class="card-title grey-text text-darken-4">{{ university.name }}<i class="material-icons right">close</i></span>
+												 <p>Here is some more information about this product that is only revealed once clicked on.</p>
+												 <a class="waves-effect waves-light btn" href="{% url 'university' university.id %}" target="_blank"><i class="material-icons left">open_in_new</i>Explore</a>
+											 </div>
+											</div>
+										</div>
+									{% endfor %}
+
+					{% else %}
+						<p>No results found.</p>
+					{% endif %}
+			{% endif %}
+
+	</div>
+
+
+</div>
+
+</main>
+
+
+{% include 'frontendapp/common/include_footer.html' %}
+{% include 'frontendapp/common/include_jsscripts.html' %}

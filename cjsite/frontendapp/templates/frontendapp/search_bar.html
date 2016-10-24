@@ -4,8 +4,8 @@
 
 	        <div class="input-field col s12 m8 l8">
 						<i class="material-icons prefix">search</i>
-	          <input  id="collegename" type="text" class="validate" name="collegename">
-	          <label for="collegename">Search</label>
+	          <input placeholder="Search" id="collegename" type="text" class="validate" name="collegename">
+	          <!-- <label for="collegename">Search</label> -->
 	        </div>
 
 					<div class="input-field col s6 m2 l2">
@@ -19,12 +19,3 @@
 					</div>
 
 	  	</form>
-<!--
-<form action="{% url 'search'%}" method="POST">
-	{% csrf_token %}
-	<input type="text" name="collegename">
-	<input type="submit" value="search"><br>
-	search by<br>
-	college<input type="radio" name = "search_type" value="college" checked><br>
-	university<input type="radio" name = "search_type" value="university">
-</form> -->

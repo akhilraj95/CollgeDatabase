@@ -30,9 +30,9 @@ def search(request):
 		search_content = request.POST['collegename']
 		search_type = request.POST['search_type']
 		if search_type == 'college':
-			college_list = College.objects.filter(name__icontains = search_content)
+			college_list = College.objects.filter(name__icontains = search_content)[:10]
 		else:
-			university_list = University.objects.filter(name__icontains = search_content)
+			university_list = University.objects.filter(name__icontains = search_content)[:10]
 	else:
 		#GET(empty)- gets the top 10 colleges in the database
 		college_list = College.objects.all()
