@@ -1,11 +1,109 @@
-<h3>College</h3>
-<hr>
+{% load staticfiles %}
+{% include 'frontendapp/common/include_head.html' %}
+
+
+<main>
+
+
+{% include 'frontendapp/common/include_nav.html' %}
+
+
+
 {% if college %}
-  <p> name : {{ college.name }}</p>
-  <p> university : {{ college.university }}</p>
-  <p> address : {{ college.address }}</p>
-  <p> website : {{ college.website }}</p>
-  <p> date founded : {{ college.date_founded }}</p>
-{% else %}
-  You seem to be lost
-{% endif %}
+    <div class="carousel carousel-slider center" data-indicators="true">
+     <div class="carousel-fixed-item center">
+     </div>
+     <div class="carousel-item red white-text" href="#one!">
+         <img class="responsive-img" id ="test" src="http://lorempixel.com/800/400/food/1">
+     </div>
+     <div class="carousel-item amber white-text" href="#two!">
+         <img  class="responsive-img" src="http://lorempixel.com/800/400/food/2">
+     </div>
+     <div class="carousel-item green white-text" href="#three!">
+         <img  class="responsive-img" src="http://lorempixel.com/800/400/food/3">
+     </div>
+     <div class="carousel-item blue white-text" href="#four!">
+         <img  class="responsive-img" src="http://lorempixel.com/800/400/food/4">
+     </div>
+   </div>
+
+   <div class="progress">
+       <div class="indeterminate"></div>
+   </div>
+
+   <div class="container">
+
+     <!--Basic Info -->
+     <div class="card-panel">
+     <h5 class="center">{{ college.name }}</h5>
+     <hr />
+     <div class='row'>
+       <div class="col s12 m6 l6">
+         <span class="center">
+         <p>Affiliations : <span class="light">{{ college.university }}</span></p>
+        </span>
+       </div>
+       <div class="col s12 m6 l6">
+         <span class="center">
+         <p>Date Founded : <span class="light">{{ college.date_founded }}</span></p>
+        </span>
+       </div>
+       <div class="col s12 m6 l6">
+         <span class="center">
+         <p>Address : <span class="light">{{ college.address }}</span></p>
+        </span>
+       </div>
+       <div class="col s12 m6 l6">
+         <span class="center">
+         <p>Website : <span class="light">{{ college.website }}</span></p>
+        </span>
+       </div>
+     </div>
+    </div>
+
+     <!-- Tabs -->
+      <div class="row">
+        <div class="col s12">
+          <ul class="tabs teal-text">
+            <li class="tab col s3"><a href="#test1">Courses</a></li>
+            <li class="tab col s3"><a class="active" href="#test2">Alumni</a></li>
+            <li class="tab col s3"><a href="#test3">Placements</a></li>
+            <li class="tab col s3"><a href="#test4">Activities</a></li>
+          </ul>
+        </div>
+        <div id="test1" class="col s12">
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+        </div>
+        <div id="test2" class="col s12">
+          Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+        </div>
+        <div id="test3" class="col s12">
+          Laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+        </div>
+        <div id="test4" class="col s12">
+          Dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+        </div>
+      </div>
+
+   </div>
+
+
+ {% else %}
+   You seem to be lost
+ {% endif %}
+
+</main>
+
+
+{% include 'frontendapp/common/include_footer.html' %}
+{% include 'frontendapp/common/include_jsscripts.html' %}
+
+<!-- Carousel sizing -->
+<script>
+  $('.carousel.carousel-slider').carousel({full_width: true});
+</script>
+
+<!-- Image Loading -->
+<script>
+$("img").on('load', function() { $('.progress').remove()})
+</script>

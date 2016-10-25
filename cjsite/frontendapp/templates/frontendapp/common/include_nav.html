@@ -1,7 +1,7 @@
 {% load staticfiles %}
   <nav class="white" role="navigation">
     <div class="nav-wrapper container">
-      <a id="logo-container" href="#" class="brand-logo">Campus Jankari</a>
+      <a id="logo-container" href="{% url 'home' %}" class="brand-logo">Campus Jankari</a>
       <ul class="right hide-on-med-and-down">
         <li><a href="#">College</a></li>
         <li><a href="#">University</a></li>
@@ -21,7 +21,6 @@
         <li><a class="waves-effect" href="#">College</a></li>
         <li><a class="waves-effect" href="#">University</a></li>
         <li><div class="divider"></div></li>
-
       </ul>
       <a href="#" data-activates="nav-mobile" class="button-collapse"><i class="material-icons">menu</i></a>
     </div>
