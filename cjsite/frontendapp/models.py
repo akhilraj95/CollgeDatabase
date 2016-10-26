@@ -24,6 +24,7 @@ class University(models.Model):
     brief = models.CharField(max_length = 250, default = "We are working on the brief.")
     model_pic = models.ImageField(upload_to = "profile_pic/university/" , default="profile_pic/not_available.jpg" ,null=True)
     visit_count = models.IntegerField(default = 0)
+    alias = models.CharField(max_length=40, null=True)
     def __str__(self):
         return self.name
 
@@ -31,6 +32,7 @@ class College(models.Model):
     university = models.ForeignKey('University', on_delete=models.CASCADE , default = None , blank = True)
     name = models.CharField(max_length=150, unique=True)
     address = models.CharField(max_length=300)
+    alias = models.CharField(max_length=40, null=True)
     website = models.URLField()
     date_founded = models.DateField('date founded')
     brief = models.CharField(max_length = 250, default = "We are working on the brief.")

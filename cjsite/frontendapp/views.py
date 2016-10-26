@@ -1,5 +1,6 @@
 from django.http import HttpResponse,Http404
 from django.shortcuts import render
+from django.db.models import Q
 
 
 #importing models
@@ -30,9 +31,9 @@ def search(request):
 		search_content = request.POST['collegename']
 		search_type = request.POST['search_type']
 		if search_type == 'college':
-			college_list = College.objects.filter(name__icontains = search_content)[:10]
+			college_list = College.objects.filter(Q(name__icontains = search_content) | Q(alias__icontains = search_content))[:10]
 		else:
-			university_list = University.objects.filter(name__icontains = search_content)[:10]
+			university_list = University.objects.filter(Q(name__icontains = search_content) | Q(alias__icontains = search_content))[:10]
 	else:
 		search_type = request.GET.get('search_type','college')
 		if search_type == 'university':
