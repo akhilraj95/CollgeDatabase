@@ -21,6 +21,9 @@ class University(models.Model):
     date_founded = models.DateField('date founded')
     country = models.CharField(max_length=50)
     website = models.URLField(default=None)
+    brief = models.CharField(max_length = 250, default = "We are working on the brief.")
+    model_pic = models.ImageField(upload_to = "profile_pic/university/" , default="profile_pic/not_available.jpg" ,null=True)
+    visit_count = models.IntegerField(default = 0)
     def __str__(self):
         return self.name
 
@@ -30,5 +33,8 @@ class College(models.Model):
     address = models.CharField(max_length=300)
     website = models.URLField()
     date_founded = models.DateField('date founded')
+    brief = models.CharField(max_length = 250, default = "We are working on the brief.")
+    model_pic = models.ImageField(upload_to = "profile_pic/college/" , default="profile_pic/not_available.jpg" ,null=True)
+    visit_count = models.IntegerField(default = 0)
     def __str__(self):
         return self.name

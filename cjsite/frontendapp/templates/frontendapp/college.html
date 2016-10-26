@@ -30,7 +30,6 @@
    <div class="progress">
        <div class="indeterminate"></div>
    </div>
-
    <div class="container">
 
      <!--Basic Info -->
@@ -55,12 +54,13 @@
        </div>
        <div class="col s12 m6 l6">
          <span class="center">
-         <p>Website : <span class="light">{{ college.website }}</span></p>
+         <p>Website : <span class="light"><a href={{ college.website }} target="_blank">{{ college.website }}</a></span></p>
         </span>
        </div>
      </div>
     </div>
 
+    {{ ip }}
      <!-- Tabs -->
       <div class="row">
         <div class="col s12">

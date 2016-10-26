@@ -34,8 +34,11 @@ def search(request):
 		else:
 			university_list = University.objects.filter(name__icontains = search_content)[:10]
 	else:
-		#GET(empty)- gets the top 10 colleges in the database
-		college_list = College.objects.all()
+		search_type = request.GET.get('search_type','college')
+		if search_type == 'university':
+			university_list = University.objects.all()[:10]
+		else:
+			college_list = College.objects.all()[:10]
 
 	context = {
 		'college_list': college_list,
@@ -49,11 +52,15 @@ def college(request,college):
 	if college.isdigit():
 		try:
 			obj_col = College.objects.get(id = college)
+			obj_col.visit_count += 1
+			obj_col.save()
 		except College.DoesNotExist:
 			raise Http404("You seem to be lost!")
 	else:
 		try:
 			obj_col = College.objects.get(name = college)
+			obj_col.visit_count += 1
+			obj_col.save()
 		except College.DoesNotExist:
 			raise Http404("You seem to be lost!")
 	context = {
@@ -66,14 +73,20 @@ def university(request,university):
 	if university.isdigit():
 		try:
 			obj_uni = University.objects.get(id = university)
+			obj_uni.visit_count = obj_uni.visit_count+ 1
+			obj_uni.save()
+			college_list = College.objects.filter(university = obj_uni)
 		except University.DoesNotExist:
 			raise Http404("You seem to be lost!")
 	else:
 		try:
 			obj_uni = University.objects.get(name = university)
+			obj_uni.visit_count = obj_uni.visit_count+ 1
+			college_list = College.objects.filter(university = obj_uni)
 		except University.DoesNotExist:
 			raise Http404("You seem to be lost!")
 	context = {
 		'university' : obj_uni,
+		'college_list': college_list,
 	}
 	return render(request, 'frontendapp/university.html', context)
