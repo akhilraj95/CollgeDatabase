@@ -2,6 +2,7 @@ from django.http import HttpResponse,Http404
 from django.shortcuts import render,redirect
 from oauth2client import client, crypt
 from django.conf import settings
+from django.db.models import Q
 
 
 #importing models
@@ -119,9 +120,9 @@ def search(request):
 		search_content = request.POST['collegename']
 		search_type = request.POST['search_type']
 		if search_type == 'university':
-			university_list = University.objects.filter(name__icontains = search_content)[:10]
+			university_list = University.objects.filter( Q(name__icontains = search_content) | Q(alias__icontains = search_content))[:10]
 		else:
-			college_list = College.objects.filter(name__icontains = search_content)[:10]
+			college_list = College.objects.filter(Q(name__icontains = search_content) | Q(alias__icontains = search_content))[:10]
 	else:
 		search_type = request.GET.get('search_type','college')
 		if search_type == 'university':
