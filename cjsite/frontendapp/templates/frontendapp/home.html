@@ -48,10 +48,11 @@
               <h2 class="center brown-text"><i class="material-icons">library_books</i></h2>
               <h5 class="center">Trending Courses</h5>
               <div class="collection">
-                <a href="#!" class="collection-item">Alvin</a>
-                <a href="#!" class="collection-item">Alvin</a>
-                <a href="#!" class="collection-item">Alvin</a>
-                <a href="#!" class="collection-item">Alvin</a>
+                {% if trendingcourselist %}
+                        {% for course in trendingcourselist %}
+                            <a href="{% url 'viewcourse' course.id %}"  class="collection-item">{{course.name}}</a>
+                        {% endfor %}
+                {% endif %}
               </div>
             </div>
           </div>

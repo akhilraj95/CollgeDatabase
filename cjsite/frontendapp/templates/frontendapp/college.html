@@ -10,31 +10,32 @@
 
 
 {% if college %}
+  <div class="container">
     <div class="carousel carousel-slider center" data-indicators="true">
      <div class="carousel-fixed-item center">
      </div>
      <div class="carousel-item red white-text" href="#one!">
-         <img class="responsive-img" id ="test" src="http://lorempixel.com/800/400/food/1">
+         <img class="responsive-img" id ="test" src="{{college.model_pic.url}}">
      </div>
      <div class="carousel-item amber white-text" href="#two!">
-         <img  class="responsive-img" src="http://lorempixel.com/800/400/food/2">
+         <img  class="responsive-img" src="{{college.model_pic_1.url}}">
      </div>
      <div class="carousel-item green white-text" href="#three!">
-         <img  class="responsive-img" src="http://lorempixel.com/800/400/food/3">
+         <img  class="responsive-img" src="{{college.model_pic_2.url}}">
      </div>
      <div class="carousel-item blue white-text" href="#four!">
-         <img  class="responsive-img" src="http://lorempixel.com/800/400/food/4">
+         <img  class="responsive-img" src="{{college.model_pic_3.url}}">
      </div>
    </div>
+  </div>
 
-   <div class="progress">
-       <div class="indeterminate"></div>
-   </div>
    <div class="container">
 
      <!--Basic Info -->
      <div class="card-panel">
      <h5 class="center">{{ college.name }}</h5>
+
+
      <hr />
      <div class='row'>
        <div class="col s12 m6 l6">
@@ -70,7 +71,7 @@
           </ul>
         </div>
         <div id="test1" class="col s12">
-          <p>No of courses provided: {{ course_list|length }}</p>
+          <p class="center">No of courses provided: {{ course_list|length }}</p>
           <ul class="collection">
             {% for course in course_list %}
               <li class="collection-item">{{ course.name }}</li>
@@ -78,10 +79,14 @@
           </ul>
         </div>
         <div id="test3" class="col s12">
-          Laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+          <p class="light italic">
+            {{ college.placement_text }}
+          </p>
         </div>
         <div id="test4" class="col s12">
-          Dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+          <p class="light italic">
+           {{ college.activity_text }}
+         </p>
         </div>
       </div>
 

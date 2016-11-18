@@ -31,6 +31,7 @@ class Courses_College_Map(models.Model):
 class Courses(models.Model):
     name = models.CharField(max_length=100,unique = True)
     field = models.ForeignKey('StudyField', default = None , blank = True)
+    visit_count = models.IntegerField(default = 0)
     def __str__(self):
         return self.name
 
@@ -42,6 +43,7 @@ class University(models.Model):
     brief = models.CharField(max_length = 250, default = "We are working on the brief.")
     model_pic = models.ImageField(upload_to = "profile_pic/university/" , default="profile_pic/not_available.jpg" ,null=True)
     visit_count = models.IntegerField(default = 0)
+    alias = models.CharField(max_length=40, null=True)
     def __str__(self):
         return self.name
 
@@ -49,10 +51,16 @@ class College(models.Model):
     university = models.ForeignKey('University', on_delete=models.CASCADE , default = None , blank = True)
     name = models.CharField(max_length=150, unique=True)
     address = models.CharField(max_length=300)
+    alias = models.CharField(max_length=40, null=True)
     website = models.URLField()
     date_founded = models.DateField('date founded')
     brief = models.CharField(max_length = 250, default = "We are working on the brief.")
     model_pic = models.ImageField(upload_to = "profile_pic/college/" , default="profile_pic/not_available.jpg" ,null=True)
+    model_pic_1 = models.ImageField(upload_to = "profile_pic/college/" , default="profile_pic/not_available.jpg" ,null=True)
+    model_pic_2 = models.ImageField(upload_to = "profile_pic/college/" , default="profile_pic/not_available.jpg" ,null=True)
+    model_pic_3 = models.ImageField(upload_to = "profile_pic/college/" , default="profile_pic/not_available.jpg" ,null=True)
     visit_count = models.IntegerField(default = 0)
+    placement_text = models.CharField(max_length=3000,default = "No data available. We are working towards bring you the information you requrie.")
+    activity_text = models.CharField(max_length=3000,default = "No data available. We are working towards bring you the information you requrie.")
     def __str__(self):
         return self.name

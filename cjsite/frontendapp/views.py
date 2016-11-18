@@ -36,8 +36,10 @@ def getsessionvar(request):
 def home(request):
 	sessioncontext = getsessionvar(request)
 	trendingcollegelist = College.objects.filter().order_by("-visit_count")[:5]
+	trendingcourselist = Courses.objects.filter().order_by("-visit_count")[:5]
 	context = {
 			"trendingcollegelist" : trendingcollegelist,
+			"trendingcourselist" : trendingcourselist,
 	}
 	context.update(sessioncontext)
 	return render(request, 'frontendapp/home.html', context)
@@ -92,6 +94,8 @@ def courses(request):
 
 def viewcourse(request,course_id):
 	course= Courses.objects.get(id = course_id)
+	course.visit_count += 1
+	course.save()
 	college_list = Courses_College_Map.objects.filter(course__id = course_id).values("college")
 	college_list = College.objects.filter(id__in = college_list)
 	context = {
