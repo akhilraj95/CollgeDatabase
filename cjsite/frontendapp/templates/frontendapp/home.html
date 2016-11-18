@@ -34,10 +34,11 @@
               <h2 class="center brown-text"><i class="material-icons">trending_up</i></h2>
               <h5 class="center">Trending Colleges</h5>
               <div class="collection">
-                <a href="#!" class="collection-item">Alvin</a>
-                <a href="#!" class="collection-item">Alvin</a>
-                <a href="#!" class="collection-item">Alvin</a>
-                <a href="#!" class="collection-item">Alvin</a>
+                {% if trendingcollegelist %}
+                        {% for college in trendingcollegelist %}
+                            <a href="{% url 'college' college.id %}"  class="collection-item">{{college.name}}</a>
+                        {% endfor %}
+                {% endif %}
               </div>
             </div>
           </div>

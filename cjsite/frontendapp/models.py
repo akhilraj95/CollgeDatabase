@@ -16,6 +16,24 @@ class User(models.Model):
     def __str__(self):
         return self.email
 
+class StudyField(models.Model):
+    name = models.CharField(max_length=40,unique = True)
+    def __str__(self):
+        return self.name
+
+class Courses_College_Map(models.Model):
+    course = models.ForeignKey('Courses', default = None , blank = True)
+    college = models.ForeignKey('College' , default = None , blank = True)
+    def __str__(self):
+        return  self.college.name +" - "+self.course.name
+
+
+class Courses(models.Model):
+    name = models.CharField(max_length=100,unique = True)
+    field = models.ForeignKey('StudyField', default = None , blank = True)
+    def __str__(self):
+        return self.name
+
 class University(models.Model):
     name = models.CharField(max_length=150, unique = True)
     date_founded = models.DateField('date founded')

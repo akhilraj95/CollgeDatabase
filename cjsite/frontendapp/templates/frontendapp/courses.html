@@ -1,0 +1,39 @@
+
+{% load staticfiles %}
+{% include 'frontendapp/common/include_head.html' %}
+
+
+<main>
+
+
+{% include 'frontendapp/common/include_nav.html' %}
+
+
+<div class="container">
+    <ul class="collapsible popout" data-collapsible="accordion">
+
+      {% if  field_course_map %}
+        {% for field,courses in field_course_map.iteritems %}
+          <li>
+            <div class="collapsible-header"><i class="material-icons">class</i>{{field}}</div>
+            <div class="collapsible-body">
+              <div class="collection">
+                {% for course in courses %}
+                    <a href="{% url 'viewcourse' course.id %}" class="collection-item">{{course}}</a>
+                {% endfor%}
+              </div>
+            </div>
+          </li>
+        {% endfor %}
+      {% endif %}
+    </ul>
+</div>
+
+
+
+
+</main>
+
+
+{% include 'frontendapp/common/include_footer.html' %}
+{% include 'frontendapp/common/include_jsscripts.html' %}

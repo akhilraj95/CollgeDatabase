@@ -1,0 +1,4 @@
+django
+pillow
+python-social-auth==0.2.1
+oauth2client

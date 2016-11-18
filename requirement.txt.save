@@ -1,0 +1,4 @@
+django
+pillow
+pip install python-social-auth==0.2.1
+

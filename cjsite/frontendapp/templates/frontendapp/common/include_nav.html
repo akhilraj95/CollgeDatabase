@@ -1,27 +1,125 @@
 {% load staticfiles %}
+<script src="https://apis.google.com/js/platform.js?onload=onLoad" async defer></script>
+<meta name="google-signin-client_id" content="696316483901-eofgts9m6pofn8j5v90hslrrbatl9cie.apps.googleusercontent.com">
+<script>
+
+function getCookie(name) {
+    var cookieValue = null;
+    if (document.cookie && document.cookie !== '') {
+        var cookies = document.cookie.split(';');
+        for (var i = 0; i < cookies.length; i++) {
+            var cookie = jQuery.trim(cookies[i]);
+            // Does this cookie string begin with the name we want?
+            if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                break;
+            }
+        }
+    }
+    return cookieValue;
+}
+
+
+function onSignIn(googleUser) {
+
+      {% if suserid == '' %}
+      var profile = googleUser.getBasicProfile();
+      console.log('ID: ' + profile.getId()); // Do not send to your backend! Use an ID token instead.
+      console.log('Name: ' + profile.getName());
+      console.log('Image URL: ' + profile.getImageUrl());
+      console.log('Email: ' + profile.getEmail());
+      var id_token = googleUser.getAuthResponse().id_token;
+      console.log('id_token'+id_token);
+
+      var xhr = new XMLHttpRequest();
+      xhr.open('POST', '{% url 'tokensignin' %}');
+      xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+      xhr.setRequestHeader("X-CSRFToken", getCookie('csrftoken'));
+      xhr.onload = function() {
+        console.log('Signed in as: ' + xhr.responseText);
+        location.reload();
+      };
+      xhr.send('idtoken=' + id_token);
+      {% endif %}
+}
+
+function onLoad() {
+     gapi.load('auth2', function() {
+       gapi.auth2.init();
+     });
+   }
+
+  function signOut() {
+    var auth2 = gapi.auth2.getAuthInstance();
+    auth2.signOut().then(function () {
+      console.log('User signed out.');
+    });
+
+    window.location="logout";
+  }
+
+
+
+</script>
   <nav class="white" role="navigation">
     <div class="nav-wrapper container">
       <a id="logo-container" href="{% url 'home' %}" class="brand-logo">Campus Jankari</a>
       <ul class="right hide-on-med-and-down">
         <li><a href="{% url 'search' %}?search_type=college">College</a></li>
         <li><a href="{% url 'search' %}?search_type=university">University</a></li>
-        <li><a href="#"><i class="material-icons">perm_identity</i></a></li>
+        <li><a href="{% url 'courses' %}">Course</a></li>
+        {% if suserid %}
+        <li><a class="modal-trigger" data-target="modal1"><img width="69%" height="69%" src="{{spicture}}"/></a></li>
+        {% else %}
+        <li><a class="modal-trigger" data-target="modal1"><i class="material-icons">perm_identity</i></a></li>
+        {% endif %}
       </ul>
 
       <ul id="nav-mobile" class="side-nav">
         <li>
           <div class="userView">
             <img class="background" src="{% static 'mobile_profile_background.jpg' %}">
+            {% if suserid %}
+            <a href="#!user"><img class="circle" src="{{ spicture }}"></a>
+            <a href="#!name"><span class="white-text name">{{ sname }}</span></a>
+            <a href="#!email"><span class="white-text email">{{ semail }}</span></a>
+            {% else %}
             <a href="#!user"><img class="circle" src="{% static 'profile_default.jpg' %}"></a>
-            <a href="#!name"><span class="white-text name">John Doe</span></a>
-            <a href="#!email"><span class="white-text email">jdandturk@gmail.com</span></a>
+            <a href="#!name"><span class="white-text name">New User</span></a>
+            <a href="#!email"><span class="white-text email"></span></a>
+            {% endif %}
           </div>
         </li>
         <li><a class="subheader">Search By</a></li>
         <li><a class="waves-effect" href="{% url 'search' %}?search_type=college">College</a></li>
         <li><a class="waves-effect" href="{% url 'search' %}?search_type=university">University</a></li>
+        <li><a class="waves-effect" href="{% url 'search' %}?search_type=course">Course</a></li>
         <li><div class="divider"></div></li>
       </ul>
       <a href="#" data-activates="nav-mobile" class="button-collapse"><i class="material-icons">menu</i></a>
     </div>
   </nav>
+
+
+      <!-- Modal Structure -->
+      <div id="modal1" class="modal bottom-sheet">
+        <div class="modal-content">
+          <h4>Account</h4>
+          {%if suserid%}
+            <blockquote>
+              Thank you for spending some valuable time on Campus Jankari.
+            </blockquote>
+            <a class="waves-effect waves-light btn" onclick="signOut()" >Log Out</a>
+          {%else%}
+          <p>Log in using google. </p>
+          <blockquote>
+            Security Note: Its always adviced to log in using google. Its convinient and safer. We get only your email id from google, to uniquely identify you.
+          </blockquote>
+          <div class="g-signin2" data-onsuccess="onSignIn"></div>
+
+          {%endif%}
+        </div>
+        <div class="modal-footer">
+          <a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat">Close</a>
+        </div>
+      </div>
