@@ -84,7 +84,7 @@ function onLoad() {
             <a href="#!name"><span class="white-text name">{{ sname }}</span></a>
             <a href="#!email"><span class="white-text email">{{ semail }}</span></a>
             {% else %}
-            <a href="#!user"><img class="circle" src="{% static 'profile_default.jpg' %}"></a>
+            <a class="modal-trigger" data-target="modal1"><img class="circle" src="{% static 'profile_default.jpg' %}"></a>
             <a href="#!name"><span class="white-text name">New User</span></a>
             <a href="#!email"><span class="white-text email"></span></a>
             {% endif %}
