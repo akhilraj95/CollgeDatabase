@@ -49,9 +49,9 @@ class University(models.Model):
         return self.name
 
 class Professor(models.Model):
-    name = models.CharField(max_length=150, unique = True)
+    name = models.CharField(max_length=150)
     college = models.ForeignKey('College', on_delete=models.CASCADE , default = None , blank = True)
-    field = models.CharField(max_length=150, unique = True)
+    field = models.CharField(max_length=150)
     def __str__(self):
         return self.name
 

@@ -4,7 +4,7 @@ from django.conf import settings
 
 
 #importing models
-from frontendapp.models import Accesslog,University,College,User,Courses_College_Map,Courses,StudyField
+from frontendapp.models import Accesslog,University,College,User,Courses_College_Map,Courses,StudyField,Professor
 from .models import access_ticket
 
 #College form
@@ -77,10 +77,10 @@ def submit(request):
 		#print("university "+university)
 		#print("modeofoperation "+modeofoperation)
 		#print("student_strength "+str(student_strength))
-		print("courses "+ str(courses))
+		#print("courses "+ str(courses))
 		#print("prof_num "+str(prof_num))
-		print("prof "+str(prof))
-		print("prof_dept "+str(prof_dept))
+		#print("prof "+str(prof))
+		#print("prof_dept "+str(prof_dept))
 		#print("eligiblestud0 "+str(eligiblestud0))
 		#print("placedstud0 "+str(placedstud0))
 		#print("twoofferstud0 "+str(twoofferstud0))
@@ -145,6 +145,20 @@ def submit(request):
 
 		#updating the courses of the college
 		#removing the previously existing data of the college
+		Courses_College_Map.objects.filter(college=college).delete()
+		#adding courses
+		for crse in courses:
+			temp_course = Courses.objects.get(id = int(crse))
+			temp = Courses_College_Map(course = temp_course, college = college)
+			temp.save()
+		#updating professor list
+		#removing the previously existing data of the college
+		Professor.objects.filter(college=college).delete()
+		#adding professor
+		for i in range(0,prof_num):
+			print(str(prof[i])+" - "+str(prof_dept[i]))
+			temp = Professor(name = str(prof[i]), college = college, field = str(prof_dept[i]))
+			temp.save()
 
 		return HttpResponse("done")
 	return HttpResponse("UNAUTHORISED ACCESS: Call Campusjankari Support");
