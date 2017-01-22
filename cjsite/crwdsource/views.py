@@ -1,6 +1,7 @@
 from django.http import HttpResponse,Http404
 from django.shortcuts import render,redirect
 from django.conf import settings
+from django.core.files.storage import FileSystemStorage
 
 
 #importing models
@@ -160,5 +161,43 @@ def submit(request):
 			temp = Professor(name = str(prof[i]), college = college, field = str(prof_dept[i]))
 			temp.save()
 
-		return HttpResponse("done")
+		#uploading logo
+        if(request.FILES['logo']):
+            myfile = request.FILES['logo']
+            fs = FileSystemStorage()
+            filename = fs.save(myfile.name, myfile)
+            college.logo = filename
+            college.save()
+
+		#uploading picture1
+        if(request.FILES['picture1']):
+            myfile = request.FILES['picture1']
+            fs = FileSystemStorage()
+            filename = fs.save(myfile.name, myfile)
+            college.model_pic = filename
+            college.save()
+		#uploading picture2
+        if(request.FILES['picture2']):
+            myfile = request.FILES['picture2']
+            fs = FileSystemStorage()
+            filename = fs.save(myfile.name, myfile)
+            college.model_pic_1 = filename
+            college.save()
+		#uploading picture3
+        if(request.FILES['picture3']):
+            myfile = request.FILES['picture3']
+            fs = FileSystemStorage()
+            filename = fs.save(myfile.name, myfile)
+            college.model_pic_2 = filename
+            college.save()
+		#uploading picture4
+        if(request.FILES['picture4']):
+            myfile = request.FILES['picture4']
+            fs = FileSystemStorage()
+            filename = fs.save(myfile.name, myfile)
+            college.model_pic_3 = filename
+            college.save()
+
+
+        return HttpResponse("done")
 	return HttpResponse("UNAUTHORISED ACCESS: Call Campusjankari Support");

@@ -18,7 +18,7 @@
   <hr />
   <br/>
   <div class="row">
-    <form class="col s12" action="submit" method="POST">
+    <form class="col s12" action="submit" method="POST" enctype="multipart/form-data">
       {% csrf_token %}
       <input type="hidden" value="{{key}}" name="hash"/>
       <div class="row">
