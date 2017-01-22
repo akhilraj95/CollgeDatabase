@@ -1,0 +1,327 @@
+{% load staticfiles %}
+{% include 'crwdsource/common/include_head.html' %}
+
+<main>
+
+{% include 'crwdsource/common/include_nav.html' %}
+
+<div class="container">
+  <div class="">
+  <br />
+  <div>
+    <h4 class="center-align">{{ticket.college.name}}</h4>
+  </div>
+  <br/>
+  <div>
+    <h5 class="left-align">Basic Information</h5>
+  </div>
+  <hr />
+  <br/>
+  <div class="row">
+    <form class="col s12" action="submit" method="POST">
+      {% csrf_token %}
+      <input type="hidden" value="{{key}}" name="hash"/>
+      <div class="row">
+        <div class="input-field col s6">
+          <input id="college" type="text" name ="college" value="{{ticket.college.name}}" class="validate">
+          <label for="college">College Name</label>
+        </div>
+        <div class="input-field col s6">
+          <select name="university">
+            <option value="" disabled selected>Choose the university</option>
+            {% if university %}
+            {% for uni in university %}
+              <option value="{{uni.id}}">{{uni.name}}</option>
+            {% endfor %}
+            {% endif %}
+          </select>
+          <label>Affiliation</label>
+      </div>
+      <div class="row">
+        <div class="input-field col s6">
+          <select id="modeofoperation" name="modeofoperation">
+            <option value="" disabled selected>Choose your option</option>
+            <option value="a">Private</option>
+            <option value="b">Government</option>
+            <option value="c">Government Aided</option>
+            <option value="d">Trust</option>
+          </select>
+          <label>Mode of operation</label>
+        </div>
+        <div class="input-field col s6">
+          <label for="strength">Student strength</label>
+          <input id="strength" placeholder="number of students per batch" name="student_strength" type="number" class="validate">
+        </div>
+      </div>
+      <div class="row">
+        <div class="input-field col s12">
+          <div class="input-field col s12">
+          <select multiple name="courses">
+            <option value="" disabled selected>Choose all courses provided</option>
+            {% if course %}
+            {% for course in course %}
+              <option value="{{course.id}}">{{course.name}}</option>
+            {% endfor %}
+            {% endif %}
+          </select>
+          <label>Select all courses provided</label>
+        </div>
+        </div>
+      </div>
+      <div class="file-field input-field">
+        <div class="btn">
+          <span>Logo</span>
+          <input type="file" name="logo">
+        </div>
+        <div class="file-path-wrapper">
+          <input class="file-path validate" type="text">
+        </div>
+      </div>
+      <div>
+
+      <!-- PROFESSOR -->
+
+        <h5 class="left-align">Professor Information</h5>
+      </div>
+      <hr />
+      <br/>
+      <div class="row">
+        <div class="input-field col s3">
+          <label for="professor">Number of professor</label>
+          <input id="professor" name="numprof" placeholder="number of professor" type="number" onclick="addProfFields()">
+        </div>
+      </div>
+      <!-- dynamically populated container -->
+      <div class="row">
+        <div id="professorcontainer" class="row">
+        </div>
+      </div>
+
+
+      <!-- PLACEMENT -->
+      <div>
+        <h5 class="left-align">Placement Information</h5>
+      </div>
+      <hr />
+      <br/>
+      <!-- Current year placement -->
+      Current year 2017
+      <div class="row">
+        <div class="input-field col s3">
+          <label for="eligiblestud0">Number of eligible students</label>
+          <input id="eligiblestud0" name="eligiblestud0"  type="number" >
+        </div>
+        <div class="input-field col s4">
+          <label for="placedstud0">Number of placed students</label>
+          <input id="placedstud0" name="placedstud0"  type="number" >
+        </div>
+        <div class="input-field col s4">
+          <label for="twoofferstud0">No with 2 offers</label>
+          <input id="twoofferstud0" name="twoofferstud0"  type="number" >
+        </div>
+      </div>
+      <!-- last year placement -->
+      Last year 2016
+      <div class="row">
+        <div class="input-field col s3">
+          <label for="eligiblestud1">Number of eligible students</label>
+          <input id="eligiblestud1" name="eligiblestud1"  type="number" >
+        </div>
+        <div class="input-field col s4">
+          <label for="placedstud1">Number of placed students</label>
+          <input id="placedstud1" name="placedstud1"  type="number" >
+        </div>
+        <div class="input-field col s4">
+          <label for="twoofferstud1">No with 2 offers</label>
+          <input id="twoofferstud1" name="twoofferstud1"  type="number" >
+        </div>
+      </div>
+      <!-- 2 years before placement -->
+      Two years back 2015
+      <div class="row">
+        <div class="input-field col s3">
+          <label for="eligiblestud2">Number of eligible students</label>
+          <input id="eligiblestud2" name="eligiblestud2"  type="number" >
+        </div>
+        <div class="input-field col s4">
+          <label for="placedstud2">Number of placed students</label>
+          <input id="placedstud2" name="placedstud2"  type="number" >
+        </div>
+        <div class="input-field col s4">
+          <label for="twoofferstud2">No with 2 offers</label>
+          <input id="twoofferstud2" name="twoofferstud2"  type="number" >
+        </div>
+      </div>
+      Name top 10 recruiters of your college
+      <div class="row">
+        <div class="input-field col s4">
+          <label for="company1">company1</label>
+          <input id="company1" name="company1"  type="text">
+        </div>
+        <div class="input-field col s4">
+          <label for="company2">company2</label>
+          <input id="company2" name="company2"  type="text">
+        </div>
+        <div class="input-field col s4">
+          <label for="company3">company3</label>
+          <input id="company3" name="company3"  type="text">
+        </div>
+        <div class="input-field col s4">
+          <label for="company4">company4</label>
+          <input id="company4" name="company4"  type="text">
+        </div>
+        <div class="input-field col s4">
+          <label for="company5">company5</label>
+          <input id="company5" name="company5"  type="text">
+        </div>
+        <div class="input-field col s4">
+          <label for="company6">company6</label>
+          <input id="company6" name="company6"  type="text">
+        </div>
+        <div class="input-field col s4">
+          <label for="company7">company7</label>
+          <input id="company7" name="company7"  type="text">
+        </div>
+        <div class="input-field col s4">
+          <label for="company8">company8</label>
+          <input id="company8" name="company8"  type="text">
+        </div>
+        <div class="input-field col s4">
+          <label for="company9">company9</label>
+          <input id="company9" name="company9"  type="text">
+        </div>
+        <div class="input-field col s4">
+          <label for="company10">company10</label>
+          <input id="company10" name="company10"  type="text">
+        </div>
+      </div>
+
+      <div>
+        <h5 class="left-align">Other Information</h5>
+      </div>
+      <hr />
+      <br/>
+      <div class="row">
+          <div class="input-field col s12">
+              <textarea id="activities" maxlength="3000" name="activities" class="materialize-textarea" length='3000' placeholder="IEEE, ISTE, IETE, etc"></textarea>
+              <label for="activities">Activities</label>
+          </div>
+          <div class="input-field col s12">
+              <textarea id="club" name="club" maxlength="2000" class="materialize-textarea" length='2000' placeholder="DEBSOC,Dance,Bands"></textarea>
+              <label for="club">Clubs</label>
+          </div>
+          <div class="input-field col s12">
+              <textarea id="recognition" name="recognition" maxlength="1000" class="materialize-textarea" length='1000' placeholder="If any"></textarea>
+              <label for="recognition">Recognition</label>
+          </div>
+          <div class="input-field col s12">
+              <textarea id="association" name="association" maxlength="1000" class="materialize-textarea" length='1000' placeholder="Foreign University"></textarea>
+              <label for="association">Association</label>
+          </div>
+          <div class="input-field col s12">
+              <textarea id="specialachievement" name="specialachievement" maxlength="150" class="materialize-textarea" length='150'></textarea>
+              <label for="specialachievement">Special Achievement</label>
+          </div>
+          <div class="input-field col s12">
+              <textarea id="others" name="others" class="materialize-textarea" maxlength="3000" length='3000'></textarea>
+              <label for="others">Other: Any point college wants to publish</label>
+          </div>
+      </div>
+
+      <div>
+        <h5 class="left-align">Pictures</h5>
+      </div>
+      <hr />
+      <br/>
+      <div class="row">
+        <div class="input-field col s3">
+          <div class="file-field input-field">
+            <div class="btn">
+              <span>picture1</span>
+              <input type="file" name="picture1">
+            </div>
+            <div class="file-path-wrapper">
+              <input class="file-path validate" type="text">
+            </div>
+          </div>
+        </div>
+        <div class="input-field col s3">
+          <div class="file-field input-field">
+            <div class="btn">
+              <span>Picture2</span>
+              <input type="file" name="picture2">
+            </div>
+            <div class="file-path-wrapper">
+              <input class="file-path validate" type="text">
+            </div>
+          </div>
+        </div>
+        <div class="input-field col s3">
+          <div class="file-field input-field">
+            <div class="btn">
+              <span>Picture3</span>
+              <input type="file" name="picture3">
+            </div>
+            <div class="file-path-wrapper">
+              <input class="file-path validate" type="text">
+            </div>
+          </div>
+        </div>
+        <div class="input-field col s3">
+          <div class="file-field input-field">
+            <div class="btn">
+              <span>Picture4</span>
+              <input type="file" name="picture4">
+            </div>
+            <div class="file-path-wrapper">
+              <input class="file-path validate" type="text">
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="center-align">
+            <input class="waves-effect waves-light btn" type="submit" value="Submit"/>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
+</div>
+
+</div>
+{% include 'crwdsource/common/include_footer.html' %}
+{% include 'crwdsource/common/include_jsscripts.html' %}
+<script>
+     $(document).ready(function() {
+        $('select').material_select();
+    });
+
+    function addProfFields(){
+            var number = document.getElementById("professor").value;
+            var container = document.getElementById("professorcontainer");
+            while (container.hasChildNodes()) {
+                container.removeChild(container.lastChild);
+            }
+            for (i=0;i<number;i++){
+                var newDiv = document.createElement("div");
+                newDiv.className = "col s6";
+                newDiv.appendChild(document.createTextNode("Professor " + (i+1)));
+                var input = document.createElement("input");
+                input.type = "text";
+                input.placeholder = "Professor's name";
+                input.name = "prof"+(i+1);
+                var newDiv2 = document.createElement("div");
+                newDiv2.className = "col s6";
+                newDiv2.appendChild(document.createTextNode("department"));
+                var input2 = document.createElement("input");
+                input2.type = "text";
+                input2.name = "prof_dept"+(i+1);
+                input2.placeholder = "department";
+                newDiv.appendChild(input);
+                newDiv2.appendChild(input2);
+                container.appendChild(newDiv);
+                container.appendChild(newDiv2);
+            }
+        }
+</script>
