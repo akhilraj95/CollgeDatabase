@@ -23,11 +23,11 @@
       <input type="hidden" value="{{key}}" name="hash"/>
       <div class="row">
         <div class="input-field col s6">
-          <input id="college" type="text" name ="college" value="{{ticket.college.name}}" class="validate">
+          <input id="college" type="text" name ="college" value="{{ticket.college.name}}" class="validate" required>
           <label for="college">College Name</label>
         </div>
         <div class="input-field col s6">
-          <select name="university">
+          <select name="university" required>
             <option value="" disabled selected>Choose the university</option>
             {% if university %}
             {% for uni in university %}
