@@ -39,7 +39,7 @@
       </div>
       <div class="row">
         <div class="input-field col s6">
-          <select id="modeofoperation" name="modeofoperation">
+          <select id="modeofoperation" name="modeofoperation" required>
             <option value="" disabled selected>Choose your option</option>
             <option value="a">Private</option>
             <option value="b">Government</option>
@@ -50,13 +50,13 @@
         </div>
         <div class="input-field col s6">
           <label for="strength">Student strength</label>
-          <input id="strength" placeholder="number of students per batch" name="student_strength" type="number" class="validate">
+          <input id="strength" placeholder="number of students per batch" name="student_strength" type="number" class="validate" required>
         </div>
       </div>
       <div class="row">
         <div class="input-field col s12">
           <div class="input-field col s12">
-          <select multiple name="courses">
+          <select multiple name="courses" required>
             <option value="" disabled selected>Choose all courses provided</option>
             {% if course %}
             {% for course in course %}
@@ -71,7 +71,7 @@
       <div class="file-field input-field">
         <div class="btn">
           <span>Logo</span>
-          <input type="file" name="logo">
+          <input type="file" name="logo" required>
         </div>
         <div class="file-path-wrapper">
           <input class="file-path validate" type="text">
@@ -88,7 +88,7 @@
       <div class="row">
         <div class="input-field col s3">
           <label for="professor">Number of professor</label>
-          <input id="professor" name="numprof" placeholder="number of professor" type="number" onclick="addProfFields()">
+          <input id="professor" name="numprof" placeholder="number of professor" type="number" onchange="addProfFields()" required>
         </div>
       </div>
       <!-- dynamically populated container -->
@@ -109,15 +109,15 @@
       <div class="row">
         <div class="input-field col s3">
           <label for="eligiblestud0">Number of eligible students</label>
-          <input id="eligiblestud0" name="eligiblestud0"  type="number" >
+          <input id="eligiblestud0" name="eligiblestud0"  type="number"  required>
         </div>
         <div class="input-field col s4">
           <label for="placedstud0">Number of placed students</label>
-          <input id="placedstud0" name="placedstud0"  type="number" >
+          <input id="placedstud0" name="placedstud0"  type="number"  required>
         </div>
         <div class="input-field col s4">
           <label for="twoofferstud0">No with 2 offers</label>
-          <input id="twoofferstud0" name="twoofferstud0"  type="number" >
+          <input id="twoofferstud0" name="twoofferstud0"  type="number" required>
         </div>
       </div>
       <!-- last year placement -->
@@ -125,15 +125,15 @@
       <div class="row">
         <div class="input-field col s3">
           <label for="eligiblestud1">Number of eligible students</label>
-          <input id="eligiblestud1" name="eligiblestud1"  type="number" >
+          <input id="eligiblestud1" name="eligiblestud1"  type="number" required>
         </div>
         <div class="input-field col s4">
           <label for="placedstud1">Number of placed students</label>
-          <input id="placedstud1" name="placedstud1"  type="number" >
+          <input id="placedstud1" name="placedstud1"  type="number" required>
         </div>
         <div class="input-field col s4">
           <label for="twoofferstud1">No with 2 offers</label>
-          <input id="twoofferstud1" name="twoofferstud1"  type="number" >
+          <input id="twoofferstud1" name="twoofferstud1"  type="number" required>
         </div>
       </div>
       <!-- 2 years before placement -->
@@ -141,58 +141,58 @@
       <div class="row">
         <div class="input-field col s3">
           <label for="eligiblestud2">Number of eligible students</label>
-          <input id="eligiblestud2" name="eligiblestud2"  type="number" >
+          <input id="eligiblestud2" name="eligiblestud2"  type="number" required>
         </div>
         <div class="input-field col s4">
           <label for="placedstud2">Number of placed students</label>
-          <input id="placedstud2" name="placedstud2"  type="number" >
+          <input id="placedstud2" name="placedstud2"  type="number" required>
         </div>
         <div class="input-field col s4">
           <label for="twoofferstud2">No with 2 offers</label>
-          <input id="twoofferstud2" name="twoofferstud2"  type="number" >
+          <input id="twoofferstud2" name="twoofferstud2"  type="number" required>
         </div>
       </div>
       Name top 10 recruiters of your college
       <div class="row">
         <div class="input-field col s4">
           <label for="company1">company1</label>
-          <input id="company1" name="company1"  type="text">
+          <input id="company1" name="company1"  type="text" required>
         </div>
         <div class="input-field col s4">
           <label for="company2">company2</label>
-          <input id="company2" name="company2"  type="text">
+          <input id="company2" name="company2"  type="text" required>
         </div>
         <div class="input-field col s4">
           <label for="company3">company3</label>
-          <input id="company3" name="company3"  type="text">
+          <input id="company3" name="company3"  type="text" required>
         </div>
         <div class="input-field col s4">
           <label for="company4">company4</label>
-          <input id="company4" name="company4"  type="text">
+          <input id="company4" name="company4"  type="text" required>
         </div>
         <div class="input-field col s4">
           <label for="company5">company5</label>
-          <input id="company5" name="company5"  type="text">
+          <input id="company5" name="company5"  type="text" required>
         </div>
         <div class="input-field col s4">
           <label for="company6">company6</label>
-          <input id="company6" name="company6"  type="text">
+          <input id="company6" name="company6"  type="text" required>
         </div>
         <div class="input-field col s4">
           <label for="company7">company7</label>
-          <input id="company7" name="company7"  type="text">
+          <input id="company7" name="company7"  type="text" required>
         </div>
         <div class="input-field col s4">
           <label for="company8">company8</label>
-          <input id="company8" name="company8"  type="text">
+          <input id="company8" name="company8"  type="text" required>
         </div>
         <div class="input-field col s4">
           <label for="company9">company9</label>
-          <input id="company9" name="company9"  type="text">
+          <input id="company9" name="company9"  type="text" required>
         </div>
         <div class="input-field col s4">
           <label for="company10">company10</label>
-          <input id="company10" name="company10"  type="text">
+          <input id="company10" name="company10"  type="text" required>
         </div>
       </div>
 
@@ -203,27 +203,27 @@
       <br/>
       <div class="row">
           <div class="input-field col s12">
-              <textarea id="activities" maxlength="3000" name="activities" class="materialize-textarea" length='3000' placeholder="IEEE, ISTE, IETE, etc"></textarea>
+              <textarea id="activities" maxlength="3000" name="activities" class="materialize-textarea" length='3000' placeholder="IEEE, ISTE, IETE, etc" required></textarea>
               <label for="activities">Activities</label>
           </div>
           <div class="input-field col s12">
-              <textarea id="club" name="club" maxlength="2000" class="materialize-textarea" length='2000' placeholder="DEBSOC,Dance,Bands"></textarea>
+              <textarea id="club" name="club" maxlength="2000" class="materialize-textarea" length='2000' placeholder="DEBSOC,Dance,Bands" required></textarea>
               <label for="club">Clubs</label>
           </div>
           <div class="input-field col s12">
-              <textarea id="recognition" name="recognition" maxlength="1000" class="materialize-textarea" length='1000' placeholder="If any"></textarea>
+              <textarea id="recognition" name="recognition" maxlength="1000" class="materialize-textarea" length='1000' placeholder="If any" required></textarea>
               <label for="recognition">Recognition</label>
           </div>
           <div class="input-field col s12">
-              <textarea id="association" name="association" maxlength="1000" class="materialize-textarea" length='1000' placeholder="Foreign University"></textarea>
+              <textarea id="association" name="association" maxlength="1000" class="materialize-textarea" length='1000' placeholder="Foreign University" required></textarea>
               <label for="association">Association</label>
           </div>
           <div class="input-field col s12">
-              <textarea id="specialachievement" name="specialachievement" maxlength="150" class="materialize-textarea" length='150'></textarea>
+              <textarea id="specialachievement" name="specialachievement" maxlength="150" class="materialize-textarea" length='150' required></textarea>
               <label for="specialachievement">Special Achievement</label>
           </div>
           <div class="input-field col s12">
-              <textarea id="others" name="others" class="materialize-textarea" maxlength="3000" length='3000'></textarea>
+              <textarea id="others" name="others" class="materialize-textarea" maxlength="3000" length='3000' required></textarea>
               <label for="others">Other: Any point college wants to publish</label>
           </div>
       </div>
@@ -238,7 +238,7 @@
           <div class="file-field input-field">
             <div class="btn">
               <span>picture1</span>
-              <input type="file" name="picture1">
+              <input type="file" name="picture1" required>
             </div>
             <div class="file-path-wrapper">
               <input class="file-path validate" type="text">
@@ -249,7 +249,7 @@
           <div class="file-field input-field">
             <div class="btn">
               <span>Picture2</span>
-              <input type="file" name="picture2">
+              <input type="file" name="picture2" required>
             </div>
             <div class="file-path-wrapper">
               <input class="file-path validate" type="text">
@@ -260,7 +260,7 @@
           <div class="file-field input-field">
             <div class="btn">
               <span>Picture3</span>
-              <input type="file" name="picture3">
+              <input type="file" name="picture3" required>
             </div>
             <div class="file-path-wrapper">
               <input class="file-path validate" type="text">
@@ -271,7 +271,7 @@
           <div class="file-field input-field">
             <div class="btn">
               <span>Picture4</span>
-              <input type="file" name="picture4">
+              <input type="file" name="picture4" required>
             </div>
             <div class="file-path-wrapper">
               <input class="file-path validate" type="text">
@@ -311,6 +311,7 @@
                 input.type = "text";
                 input.placeholder = "Professor's name";
                 input.name = "prof"+(i+1);
+                input.required = true;
                 var newDiv2 = document.createElement("div");
                 newDiv2.className = "col s6";
                 newDiv2.appendChild(document.createTextNode("department"));
