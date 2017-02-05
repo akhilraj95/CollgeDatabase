@@ -1,0 +1,53 @@
+{% load staticfiles %}
+{% include 'frontendapp/common/include_head.html' %}
+
+<main>
+
+{% include 'frontendapp/common/include_nav.html' %}
+
+
+<div class="container">
+	<div class="row">
+		{% include "frontendapp/search_bar.html" %}
+	</div>
+
+	<hr> 
+	<h5 class="center-align">{{fieldname}}</h5>
+	<hr>
+	<div class="row">
+			{% if college_list %}
+							{% for college in college_list %}
+								<div class="col s12 m6 l6">
+									<div class="card small">
+									 <div class="card-image waves-effect waves-block waves-light">
+										 <img class="activator" src="{{ college.model_pic.url }}">
+									 </div>
+									 <div class="card-content">
+										 <span class="card-title activator grey-text text-darken-4">{{ college.name }}<i class="material-icons right">more_vert</i></span>
+										 <p><a href="{% url 'university' college.university %}" target="_blank">{{ college.university }}</a></p>
+									 </div>
+									 <div class="card-reveal">
+										 <span class="card-title grey-text text-darken-4">{{ college.name }}<i class="material-icons right">close</i></span>
+										 <p>{{ college.brief }}</p>
+										 <a class="waves-effect waves-light btn" href="{% url 'college' college.id %}" target="_blank" ><i class="material-icons left">open_in_new</i>Explore</a>
+									 </div>
+									</div>
+								</div>
+							{% endfor %}
+			{% else %}
+				<h5 class="center-align"> Work Under Progress </h5>
+
+			{% endif %}
+
+	</div>
+
+
+</div>
+
+
+
+</main>
+
+
+{% include 'frontendapp/common/include_footer.html' %}
+{% include 'frontendapp/common/include_jsscripts.html' %}

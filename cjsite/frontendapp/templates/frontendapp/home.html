@@ -1,106 +1,196 @@
 {% load staticfiles %}
 {% include 'frontendapp/common/include_head.html' %}
 
-<main>
 
-  {% include 'frontendapp/common/include_nav.html' %}
+      <main>
 
-    <div id="index-banner" class="parallax-container">
-      <div class="section no-pad-bot">
-        <div class="container">
-          <div class="pagecontent">
-            <div class="row center">
-              <h5 class="header col s12 ">A comprehensive library of Indian colleges</h5>
-            </div>
-            <div class="row card-panel"  >
-                  <span class="teal-text ">
-                    {% include "frontendapp/search_bar.html" %}
-                  </span>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="parallax"><img src="{% static 'background1.jpg' %}" alt="Unsplashed background img 1"></div>
-    </div>
+        {% include 'frontendapp/common/include_nav.html' %}
 
-
-    <div class="container">
-      <div class="section">
-
-        <!--   Icon Section   -->
-        <div class="row">
-          <div class="col s12 m6">
-            <div class="icon-block">
-              <h2 class="center brown-text"><i class="material-icons">trending_up</i></h2>
-              <h5 class="center">Trending Colleges</h5>
-              <div class="collection">
-                {% if trendingcollegelist %}
-                        {% for college in trendingcollegelist %}
-                            <a href="{% url 'college' college.id %}"  class="collection-item">{{college.name}}</a>
-                        {% endfor %}
-                {% endif %}
+          <div id="index-banner" class="parallax-container">
+            <div class="section no-pad-bot">
+              <div class="container">
+                <div class="pagecontent">
+                  <div class="row center">
+                    <h5 class="header col s12 ">A comprehensive library of Indian colleges</h5>
+                  </div>
+                  <div class="row card-panel"  >
+                        <span class="teal-text ">
+                          {% include "frontendapp/search_bar.html" %}
+                        </span>
+                  </div>
+                </div>
               </div>
             </div>
+            <div class="parallax"><img src="{% static 'background1.jpg' %}" alt="Unsplashed background img 1"></div>
           </div>
 
-          <div class="col s12 m6">
-            <div class="icon-block">
-              <h2 class="center brown-text"><i class="material-icons">library_books</i></h2>
-              <h5 class="center">Trending Courses</h5>
-              <div class="collection">
-                {% if trendingcourselist %}
-                        {% for course in trendingcourselist %}
-                            <a href="{% url 'viewcourse' course.id %}"  class="collection-item">{{course.name}}</a>
-                        {% endfor %}
-                {% endif %}
+ <div class="container">
+            <div class="section">
+              <div class="row">
+                <h5 class="center-align">Choose your path to success</h5>
               </div>
+
+               <div class="row">
+                <div class="col s6 m3">
+                  <div class="card">
+                    <div class="card-image">
+                      <img src="{% static 'engineering.jpg' %}">
+                      
+                    </div>
+                    <div class="card-action">
+                      <a href="searchapp/field/Engineering">Engineering</a>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="col s6 m3">
+                  <div class="card">
+                    <div class="card-image">
+                      <img src="{% static 'medical.jpg' %}">
+                      
+                    </div>
+                    <div class="card-action">
+                      <a href="searchapp/field/Medicine">medicine</a>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="col s6 m3">
+                  <div class="card">
+                    <div class="card-image">
+                      <img src="{% static 'law.jpg' %}">
+                      
+                    </div>
+                    <div class="card-action">
+                      <a href="searchapp/field/Arts">arts</a>
+                    </div>
+                  </div>
+                </div>
+                
+                 <div class="col s6 m3">
+                  <div class="card">
+                    <div class="card-image">
+                      <img src="{% static 'business.jpg' %}">
+                      
+                    </div>
+                    <div class="card-action">
+                      <a href="searchapp/field/Business">business</a>
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+
+
+
+               <div class="row">
+               
+
+                <div class="col s6 m3">
+                  <div class="card">
+                    <div class="card-image">
+                      <img src="{% static 'architecture.jpg' %}">
+                    </div>
+                    <div class="card-action">
+                      <a href="searchapp/field/Architechture">architecture</a>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="col s6 m3">
+                  <div class="card">
+                    <div class="card-image">
+                      <img src="{% static 'science.jpg' %}">
+                      
+                    </div>
+                    <div class="card-action">
+                      <a href="searchapp/field/Science">science</a>
+                    </div>
+                  </div>
+                </div>
+              
+
+              <div class="col s6 m3">
+                  <div class="card">
+                    <div class="card-image">
+                      <img src="{% static 'law.jpg' %}">
+                      
+                    </div>
+                    <div class="card-action">
+                      <a href="searchapp/field/Law">Law</a>
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+
+
             </div>
           </div>
-        </div>
-
-      </div>
-    </div>
 
 
-    <div class="parallax-container valign-wrapper">
-      <div class="section no-pad-bot">
-        <div class="container">
-          <div class="row center">
-            <h5 class="header col s12  ">Find the perfect college for you to start your future today</h5>
+          <div class="parallax-container valign-wrapper">
+            <div class="section no-pad-bot">
+              <div class="container">
+                <div class="row center">
+                  <h5 class="header col s12  ">Find the perfect college for you to start your future today</h5>
+                </div>
+              </div>
+            </div>
+            <div class="parallax"><img src="{% static 'background2.jpg' %}" alt="Unsplashed background img 2"></div>
           </div>
-        </div>
-      </div>
-      <div class="parallax"><img src="{% static 'background2.jpg' %}" alt="Unsplashed background img 2"></div>
-    </div>
 
-    <div class="container">
-      <div class="section">
 
-        <div class="row">
-          <div class="col s12 center">
-            <h3><i class="mdi-content-send brown-text"></i></h3>
-            <h4>Contact Us</h4>
-                        <p class="left-align light">Let us guide you through your path to success. Education defines your future, every step you take is a important. Make your decisions with all the information you can get. Let us keep you well infomed while you realize your dream.</p>
+          <div class="container">
+            <div class="section">
+
+              <!--   Icon Section   -->
+              <div class="row">
+                <div class="col s12 m6">
+                  <div class="icon-block">
+                    <h2 class="center brown-text"><i class="material-icons">trending_up</i></h2>
+                    <h5 class="center">Trending Colleges</h5>
+                    <div class="collection">
+                      {% if trendingcollegelist %}
+                              {% for college in trendingcollegelist %}
+                                  <a href="{% url 'college' college.id %}"  class="collection-item">{{college.name}}</a>
+                              {% endfor %}
+                      {% endif %}
+                    </div>
+                  </div>
+                </div>
+
+                <div class="col s12 m6">
+                  <div class="icon-block">
+                    <h2 class="center brown-text"><i class="material-icons">library_books</i></h2>
+                    <h5 class="center">Trending Courses</h5>
+                    <div class="collection">
+                      {% if trendingcourselist %}
+                              {% for course in trendingcourselist %}
+                                  <a href="{% url 'viewcourse' course.id %}"  class="collection-item">{{course.name}}</a>
+                              {% endfor %}
+                      {% endif %}
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+            </div>
           </div>
-        </div>
+         
 
-      </div>
-    </div>
-
-
-    <div class="parallax-container valign-wrapper">
-      <div class="section no-pad-bot">
-        <div class="container">
-          <div class="row center">
-            <h5 class="header col s12 ">The only thing more expensive than education is ignorance -  Benjamin Franklin</h5>
+          <div class="parallax-container valign-wrapper">
+            <div class="section no-pad-bot">
+              <div class="container">
+                <div class="row center">
+                  <h5 class="header col s12 ">The only thing more expensive than education is ignorance -  Benjamin Franklin</h5>
+                </div>
+              </div>
+            </div>
+            <div class="parallax"><img src="{% static 'background3.jpg' %}" alt="Unsplashed background img 3"></div>
           </div>
-        </div>
-      </div>
-      <div class="parallax"><img src="{% static 'background3.jpg' %}" alt="Unsplashed background img 3"></div>
-    </div>
 
-</main>
-
+      </main>
 
 {% include 'frontendapp/common/include_footer.html' %}
 {% include 'frontendapp/common/include_jsscripts.html' %}

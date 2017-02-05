@@ -22,5 +22,7 @@ from django.conf import settings
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^collegeform/', include('crwdsource.urls')),
+    url(r'^searchapp/', include('searchapp.urls')),
     url(r'', include('frontendapp.urls')),
+
 ]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
