@@ -1,4 +1,4 @@
 *~
 *.pyc
 cjsite/cjsite/settings.py
-cjsite/dbsqlite3
+cjsite/db.sqlite3
