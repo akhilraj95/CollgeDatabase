@@ -3,7 +3,7 @@ from django.shortcuts import render,redirect
 from oauth2client import client, crypt
 from django.conf import settings
 from django.db.models import Q
-
+import re
 
 #importing models
 from .models import Accesslog,University,College,User,Courses_College_Map,Courses,StudyField
@@ -115,24 +115,37 @@ def results(request):
 def search(request):
 	college_list = []
 	university_list = []
+	byplace_list = []
 	#POST - searches the database for the requested collge
 	if request.method == "POST":
 		search_content = request.POST['collegename']
-		search_type = request.POST['search_type']
-		if search_type == 'university':
-			university_list = University.objects.filter( Q(name__icontains = search_content) | Q(alias__icontains = search_content))[:10]
-		else:
-			college_list = College.objects.filter(Q(name__icontains = search_content) | Q(alias__icontains = search_content))[:10]
+		# aliases
+		search_content = str(search_content).lower()
+		if(search_content=='bangalore'):
+			search_content = 'bengaluru'
+		elif(search_content=='bombay'):
+			search_content = 'mumbai'
+		elif(search_content=='Madras'):
+			search_content ='chennai'
+		# querying db
+		university_list = University.objects.filter( Q(name__icontains = search_content) | Q(alias__icontains = search_content))[:10]
+		college_list = College.objects.filter(Q(name__icontains = search_content) | Q(alias__icontains = search_content))[:10]
+		address_list = College.objects.all()
+		pattern = re.compile(search_content)
+		for addr in address_list:
+			if(pattern.search(str(addr.address).lower())):
+				byplace_list.append(addr)
+		print(byplace_list)
 	else:
 		search_type = request.GET.get('search_type','college')
 		if search_type == 'university':
 			university_list = University.objects.all()[:10]
 		else:
 			college_list = College.objects.all()[:10]
-
 	context = {
 		'college_list': college_list,
 		'university_list':university_list,
+		'byplace_list':byplace_list,
 	}
 	sessioncontext = getsessionvar(request)
 	context.update(sessioncontext)

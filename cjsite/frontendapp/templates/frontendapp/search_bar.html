@@ -2,13 +2,14 @@
 	    <form class="col s12"  action="{% url 'search'%}" method="post">
 				{% csrf_token %}
 
-	        <div class="input-field col s12 m8 l8">
+	        <div class="input-field col s12 m12 l12">
 						<i class="material-icons prefix">search</i>
-	          <input placeholder="Search" id="collegename" type="text" class="validate" name="collegename">
+	          <input placeholder="Search" id="collegename" type="text" name="collegename" class="tooltipped validate" data-position="top" data-delay="50" data-tooltip="search by name or location">
 	          <!-- <label for="collegename">Search</label> -->
 	        </div>
 
-					<div class="input-field col s6 m2 l2">
+					<!-- College and University radio button removed-->
+					<!-- <div class="input-field col s6 m2 l2">
 
 				      <input name="search_type" type="radio" id="test1" value="college" checked />
 				      <label for="test1">College</label>
@@ -16,6 +17,6 @@
 					<div class="input-field col s6 m2 l2">
 				      <input name="search_type" type="radio" id="test2" value="university" />
 				      <label for="test2">University</label>
-					</div>
+					</div> -->
 
 	  	</form>

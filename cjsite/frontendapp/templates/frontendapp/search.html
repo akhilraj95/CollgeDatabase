@@ -10,8 +10,8 @@
 		{% include "frontendapp/search_bar.html" %}
 	</div>
 
-	<div class="row">
 			{% if college_list %}
+				<div class="row">
 							{% for college in college_list %}
 								<div class="col s12 m6 l6">
 									<div class="card small">
@@ -30,9 +30,14 @@
 									</div>
 								</div>
 							{% endfor %}
+					</div>
+			{% endif %}
 
-			{% else %}
-				{% if university_list %}
+			{% if university_list %}
+			<div class="row">
+									<p class="center-align">
+											Universities found
+									</p>
 									{% for university in university_list %}
 										<div class="col s12 m6 l6">
 											<div class="card small">
@@ -51,14 +56,42 @@
 											</div>
 										</div>
 									{% endfor %}
-
-					{% else %}
-						<p>No results found.</p>
-					{% endif %}
+			</div>
 			{% endif %}
 
-	</div>
+			{% if byplace_list %}
+				<div class="row">
+							<p class="center-align">
+									Colleges found by location
+							</p>
+							{% for college in byplace_list %}
+								<div class="col s12 m6 l6">
+									<div class="card small">
+									 <div class="card-image waves-effect waves-block waves-light">
+										 <img class="activator" src="{{ college.model_pic.url }}">
+									 </div>
+									 <div class="card-content">
+										 <span class="card-title activator grey-text text-darken-4">{{ college.name }}<i class="material-icons right">more_vert</i></span>
+										 <p><a href="{% url 'university' college.university %}" target="_blank">{{ college.university }}</a></p>
+									 </div>
+									 <div class="card-reveal">
+										 <span class="card-title grey-text text-darken-4">{{ college.name }}<i class="material-icons right">close</i></span>
+										 <p>{{ college.brief }}</p>
+										 <a class="waves-effect waves-light btn" href="{% url 'college' college.id %}" target="_blank" ><i class="material-icons left">open_in_new</i>Explore</a>
+									 </div>
+									</div>
+								</div>
+							{% endfor %}
+					</div>
+			{% endif %}
 
+			{% if not college_list and not university_list and not byplace_list%}
+				<div class="row">
+						<p class="center-align">
+							 No results, try again.
+						</p>
+				</div>
+			{% endif %}
 
 </div>
 
