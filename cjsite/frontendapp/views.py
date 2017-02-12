@@ -193,9 +193,9 @@ def college(request,college):
 	if(obj_col.placement_num_placed!=0 and obj_col.placement_num_eligible!=0):
 		if(obj_col.placement_num_placed!=0 and obj_col.placement_num_eligible!=0):
 			if(obj_col.placement_num_placed!=0 and obj_col.placement_num_eligible!=0):
-				placed2016pct = (float(obj_col.placement_num_placed)/float(obj_col.placement_num_eligible))*100
-				placed2015pct = (float(obj_col.placement_num_placed1)/float(obj_col.placement_num_eligible1))*100
-				placed2014pct = (float(obj_col.placement_num_placed2)/float(obj_col.placement_num_eligible2))*100
+				placed2016pct = round((float(obj_col.placement_num_placed)/float(obj_col.placement_num_eligible))*100,2)
+				placed2015pct = round((float(obj_col.placement_num_placed1)/float(obj_col.placement_num_eligible1))*100,2)
+				placed2014pct = round((float(obj_col.placement_num_placed2)/float(obj_col.placement_num_eligible2))*100,2)
 
 	context = {
 		'college' : obj_col,
