@@ -172,9 +172,46 @@ def college(request,college):
 			obj_col.save()
 		except College.DoesNotExist:
 			raise Http404("You seem to be lost!")
+
+	#placed one offer
+	placed2016 = obj_col.placement_num_placed-obj_col.placement_num_with_two_offers
+	placed2015 = obj_col.placement_num_placed1-obj_col.placement_num_with_two_offers1
+	placed2014 = obj_col.placement_num_placed2-obj_col.placement_num_with_two_offers2
+	#total stud
+	notplaced2016 = obj_col.placement_num_eligible-obj_col.placement_num_placed
+	notplaced2015 = obj_col.placement_num_eligible1-obj_col.placement_num_placed1
+	notplaced2014 = obj_col.placement_num_eligible2-obj_col.placement_num_placed2
+	#twooffer
+	twooffer2016 = obj_col.placement_num_with_two_offers
+	twooffer2015 = obj_col.placement_num_with_two_offers1
+	twooffer2014 = obj_col.placement_num_with_two_offers2
+
+	placed2016pct = 0
+	placed2015pct = 0
+	placed2014pct = 0
+
+	if(obj_col.placement_num_placed!=0 and obj_col.placement_num_eligible!=0):
+		if(obj_col.placement_num_placed!=0 and obj_col.placement_num_eligible!=0):
+			if(obj_col.placement_num_placed!=0 and obj_col.placement_num_eligible!=0):
+				placed2016pct = (float(obj_col.placement_num_placed)/float(obj_col.placement_num_eligible))*100
+				placed2015pct = (float(obj_col.placement_num_placed1)/float(obj_col.placement_num_eligible1))*100
+				placed2014pct = (float(obj_col.placement_num_placed2)/float(obj_col.placement_num_eligible2))*100
+
 	context = {
 		'college' : obj_col,
 		'course_list' : course_list,
+		'placed2016' : placed2016,
+		'placed2015' : placed2015,
+		'placed2014' : placed2014,
+		'notplaced2016' : notplaced2016,
+		'notplaced2015' : notplaced2015,
+		'notplaced2014' : notplaced2014,
+		'twooffer2016' : twooffer2016,
+		'twooffer2015' : twooffer2015,
+		'twooffer2014' : twooffer2014,
+		'placed2016pct' : placed2016pct,
+		'placed2015pct' : placed2015pct,
+		'placed2014pct' : placed2014pct,
 	}
 	sessioncontext = getsessionvar(request)
 	context.update(sessioncontext)
