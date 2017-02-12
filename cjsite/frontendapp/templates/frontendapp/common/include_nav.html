@@ -69,7 +69,7 @@ function onLoad() {
         <li><a href="{% url 'search' %}?search_type=university">University</a></li>
         <li><a href="{% url 'courses' %}">Course</a></li>
         {% if suserid %}
-        <li><a class="modal-trigger" data-target="modal1"><img width="50%" height="50%" src="{{spicture}}"/></a></li>
+        <li><a class="modal-trigger" data-target="modal1"><i class="material-icons">view_week</i></a></li>
         {% else %}
         <li><a class="modal-trigger" data-target="modal1"><i class="material-icons">perm_identity</i></a></li>
         {% endif %}
